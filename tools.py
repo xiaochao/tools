@@ -48,8 +48,8 @@ class Cities(db.Model):
         return '<country %r province %r city %r>' % self.country, self.province, self.city
 
 
-@app.route('/tools', methods=['GET', 'POST'])
-@app.route('/tools/cities', methods=['GET', 'POST'])
+@app.route('', methods=['GET', 'POST'])
+@app.route('/cities', methods=['GET', 'POST'])
 def hello_world():
     logger.debug(request.remote_addr)
     if request.method == 'GET':
