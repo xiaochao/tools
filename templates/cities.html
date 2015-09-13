@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/img/favicon.ico">
+
+    <title>工具</title>
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/cover.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand"></h3>
+                    <nav>
+                        <ul class="nav masthead-nav">
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="inner cover">
+                <form class="form-inline" method="post" id="search">
+                    <div class="form-group col-md-4">
+                        <label for="country">国家</label>
+                        <input type="text" class="form-control" id="country" name="country" placeholder="中国"
+                               style="width: 80%">
+                    </div>
+                    <div class="form-group  col-md-4">
+                        <label for="province">省/州</label>
+                        <input type="text" class="form-control" id="province" name="province" placeholder="江苏"
+                               style="width: 80%">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="city">市区</label>
+                        <input type="text" class="form-control" id="city" name="city" placeholder="淮安"
+                               style="width: 80%">
+                    </div>
+                    <br><br><br>
+                    <button type="submit" class="btn btn-primary" id="submit" style="width: 70%">搜索</button>
+                </form>
+                <div id="result">
+
+                </div>
+            </div>
+
+            <div class="mastfoot">
+                <div class="inner">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script type="text/javascript">
+    $("#submit").click(function () {
+        var data = $("#search").serialize();
+        $.ajax({
+            url: "",
+            data: data,
+            dataType: "json",
+            type: "post",
+            cache: false,
+            success: function (data) {
+                if(data.flag == 0){
+                    var re_str = "<br><br><table style='width:100%'><tr><td>国家</td><td>国家id</td><td>省/州</td><td>省/州id</td><td>市区</td><td>市区id</td></tr>";
+                    console.log(data['result']);
+                    for(var one in data['result']) {
+                        re_str += "<tr><td>" + data['result'][one].country + "</td><td>" + data['result'][one].c_id + "</td>";
+                        re_str += "<td>" + data['result'][one].province + "</td><td>" + data['result'][one].p_id + "</td>";
+                        re_str += "<td>" + data['result'][one].city + "</td><td>" + data['result'][one].i_id + "</td></tr>";
+                    }
+                    re_str += "</table>"
+
+                    $("#result").html(re_str);
+                } else {
+                    alert(data.message);
+                }
+            },
+            error: function (data) {
+                alert("error");
+            }
+        });
+        return false;
+    });
+</script>
+</body>
+</html>
