@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
+#from flaskext.sqlalchemy import SQLAlchemy 
 import simplejson as json
 import logging
 import os
@@ -48,7 +49,7 @@ class Cities(db.Model):
         return '<country %r province %r city %r>' % self.country, self.province, self.city
 
 
-@app.route('', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/cities', methods=['GET', 'POST'])
 def hello_world():
     logger.debug(request.remote_addr)
