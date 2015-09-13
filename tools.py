@@ -23,7 +23,7 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 #init mysql connect
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@127.0.0.1/tools'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:892185bm@127.0.0.1:3306/tools'
 db = SQLAlchemy(app)
 
 
