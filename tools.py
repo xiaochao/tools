@@ -78,21 +78,31 @@ def cities():
     logger.debug(request.remote_addr)
     if request.method == 'GET':
         return render_template('cities.html')
+    language = request.form.get('language', 'cn')
     province = request.form.get('province', '')
     country = request.form.get('country', '')
     city = request.form.get('city', '')
     if city:
         #myvar = dict(city=city)
         #result = db.select('cities', myvar, where='city="'+city+'"', what='c_id, p_id, i_id')
-        result = Cities.query.filter_by(city=city)
+        if language == 'cn':
+            result = Cities.query.filter_by(city=city)
+        else:
+            result = Cities_en.query.filter_by(city=city)
     if province:
         #myvar = dict(province=province)
         #result = db.select('cities', myvar, where='province="'+province+'"', what='c_id, p_id')
-        result = Cities.query.filter_by(province=province)
+        if language == 'cn':
+            result = Cities.query.filter_by(province=province)
+        else:
+            result = Cities_en.query.filter_by(province=province)
     if country:
         #myvar = dict(country=country)
         #result = db.select('cities', myvar, where='country="'+country+'"', what='c_id')
-        result = Cities.query.filter_by(country=country)
+        if language == 'cn':
+            result = Cities.query.filter_by(country=country)
+        else:
+            result = Cities_en.query.filter_by(country=country)
 
     find_or_not = False
     now_list = list()
