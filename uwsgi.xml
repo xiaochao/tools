@@ -1,0 +1,14 @@
+<uwsgi>
+<socket>0.0.0.0:4001</socket>
+<listen>100</listen>
+<master>true</master>
+<pidfile>/home/simon/tools/tools.pid</pidfile>
+<processes>2</processes>
+<pythonpath>/home/simon/tools</pythonpath>
+<profiler>true</profiler>
+<memory-report>true</memory-report>
+<enable-threads>true</enable-threads>
+<logdate>true</logdate>
+<limit-as>6048</limit-as>
+<daemonize>/data/log/tools.log</daemonize>
+</uwsgi>
