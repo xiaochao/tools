@@ -8,7 +8,7 @@ import logging
 import os
 
 app = Flask(__name__)
-app.debug = False
+app.debug = True
 
 #get cities from file
 cities = open(os.path.split(os.path.realpath(__file__))[0]+'/cities.json').read()
@@ -23,7 +23,7 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 
 #init mysql connect
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:******@127.0.0.1:3306/tools'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@127.0.0.1:3306/tools'
 db = SQLAlchemy(app)
 
 
@@ -139,7 +139,8 @@ def cities():
                         return_result['city'] = i.city
                         return_result['i_id'] = i.i_id
                         find_or_not = True
-            now_list.append(return_result)
+            if return_result:
+                now_list.append(return_result)
         now_result = dict(flag=0, result=now_list)
         if not find_or_not:
             logger.warn('miss:'+str(request.form))
