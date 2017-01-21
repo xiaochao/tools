@@ -7,7 +7,7 @@
 ### [演示地址](http://tools.bugcode.cn)
 ### ![截图](http://7xlrq6.com1.z0.glb.clouddn.com/tools.png)
 ### 使用方法：
-* 输入国家名称，获取到国家ID
+* 输入国家名称，获取到国家ID.
 * 输入省，获取到国家和省ID
 * 输入城市，获取到国家、省和市ID
 
