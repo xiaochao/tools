@@ -23,7 +23,7 @@ url = 'http://tools.bugcode.cn'
     	print r.status_code
 
 #####根据城市ID获取城市名字
-* 获取所有国家
+* 获取所有国家  
 
 		r = requests.post(url+'/cities/search', {'action': 'countries', 'language': 'cn'})
 		if r.status_code == 200:
